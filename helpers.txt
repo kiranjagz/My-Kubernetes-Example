@@ -1,0 +1,9 @@
+## Get url of Service
+minikube service --url {service-name}
+
+## Get pods
+kubectl get pods
+kubectl get services
+
+## Apply deployment yaml
+kubectl apply - f {deployment-file-name}.yaml
