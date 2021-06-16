@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvc-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mvc-app
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: mvc-app
+    spec:
+      containers:
+      - name: mvc-app
+        image: kiranjagz/mvc-app:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mvc-service
+spec:
+  selector:
+    app: mvc-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30100
+  type: NodePort
